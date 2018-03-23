@@ -1,0 +1,16 @@
+<style>
+    .weatherWidget{padding:10px 0}
+    .location h3 {display: inline-block; font-size: 16px; font-weight: normal;margin-right: 10px}
+    .location a {display: inline-block; font-size: 14px}
+    .location img {width: 20px; margin-right: 10px; vertical-align: middle}
+</style>
+
+<div class="weatherWidget">
+    {{#each partials.weather.locations}}
+        <div class="location">
+            <h3>{{name}}</h3>
+            <a href="{{weatherUrl}}"><img src="{{iconUrl}}" alt="{{weather}}"> {{weather}},{{temp}} </a>
+        </div>
+    {{/each}}
+    <h3>{{partials.weather.locations.[2].name}}</h3>
+</div>
