@@ -1,0 +1,17 @@
+
+//tips:
+
+// res.render  //客户端如何渲染
+// res.set //设置响应报头
+// res.send //服务端返回给客户端的信息
+// res.json //服务端返回给客户端的json
+// res.redirect //服务端重定向
+
+// express.use //中间件
+// express.set
+// express.get //get请求
+// express.post //post请求
+
+//{{{body}}}、{{name}}、{{{_sections.head}}} //调用对象
+//{{#each}}、{{#if}}、{{#section}}  //调用方法。可用helper自定义
+//{{>weather}} //调用局部文件
