@@ -1,0 +1,30 @@
+
+<style>
+    .btn-file { position: relative; overflow: hidden; }
+    .btn-file input[type=file] { position: absolute; top: 0; right: 0; min-width: 100%; min-height: 100%; font-size: 999px; text-align: right; filter: alpha(opacity=0); opacity: 0; outline: none; background: white; cursor: inherit; display: block; }
+</style>
+
+<span class="btn btn-default btn-file">
+    Upload
+    <input type="file" class="form-control" required accept="image/*" id="fieldPhoto" data-url="upload" multiple name="photo">
+</span>
+<div id="uploads"></div>
+
+{{#section 'jquery'}}
+    <script src="vendor/jqfu/jquery.ui.widget.js"></script>
+    <script src="vendor/jqfu/jquery.iframe-transport.js"></script>
+    <script src="vendor/jqfu/jquery.fileupload.js"></script> <!--这三个js文件的顺序不能颠倒，否则上传文件后upload文件夹的自动生成会失败-->
+    <script>
+        $(document).ready(function () {
+            $('#fieldPhoto').fileupload({// $().fileupload()是jquery-file-upload-middleware中定义的api
+                dataType:"json",
+                done:function (e,data) {
+                    $.each(data.result.files,function (index,file) {
+                        $('#uploads').append($('<div class="upload">' + '<span class="glyphicon glyphicon-ok"></span>' + '&nbsp;' + '<img src=" ' + file.url + '">' + file.originalName + '</div>'));
+                    });
+                    console.log(data.result.files);
+                }
+            });
+        });
+    </script>
+{{/section}}

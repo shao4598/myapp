@@ -1,0 +1,57 @@
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<h2>Sign up for our newsletter to receive news and specials!</h2>
+<div class="formContainer">
+    <form class="form-horizontal newsletterForm" role="form" action="/process?form=newsletter" method="post">
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+        <div class="form-group">
+            <label for="fieldName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="fieldName" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fieldEmail" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" required id="fieldEmail" name="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-default" >Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{{#section 'jquery'}}
+<script>
+    $(document).ready(function () {
+        $('.newsletterForm').on('submit',function (evt) {
+            evt.preventDefault();//该方法将通知 Web 浏览器不要执行与事件关联的默认动作（如果存在这样的动作）
+            var action=$(this).attr('action');
+            var $container=$(this).closest('.formContainer');//closest() 方法获得匹配选择器的第一个祖先元素，从当前元素开始沿 DOM 树向上
+            $.ajax({
+                url:action,
+                type:"POST",
+                data: $("form").serialize(), //输出序列化表单值的结果
+                dataType:"json",
+                success:function(data){ //此处data是纯形参，即服务端ajax提交成功后，res.send传入的自定义对象{success:true}。与服务端data: $("form").serialize()无关。
+                    if(data.success){
+                        $container.html('<h2>客户端提交成功</h2>');
+                    }else{
+                        $container.html('客户端提交失败啦');
+                    }
+                },
+                error:function () {
+                    $container.html('服务器瓦特了');
+                }
+            });
+        });
+    });
+</script>
+
+{{/section}}

@@ -1,0 +1,25 @@
+<style>
+*{margin: 0;padding: 0}
+
+.news-list-l,.news-list-r {display: inline-block; overflow: hidden; margin:30px; width: 40%}
+.news-list-r {margin-left: 5%}
+.news-list-l li,.news-list-r li {overflow: hidden; margin-bottom:10px }
+.news-list-l h4,.news-list-r h4 {margin:10px 0;font-size: 18px;line-height: 30px}
+.news-list-l h4 a,.news-list-r h4 a {color: #333;text-decoration: none}
+.news-list-l img,.news-list-r img {float:left; width: 40%}
+.news-list-l p,.news-list-r p {display: block;float:right; width: 55%}
+
+</style>
+
+<ul class="news-list-l">
+    {{> weather}} {{!指weather.handlebars}}
+    {{#each brand}}
+        <li>
+            <h4><a href="{{link}}">{{title}}</a></h4>
+            <a href="{{link}}"><img src="{{thumbSrc}}"> </a>
+            <p>{{description}}</p>
+        </li>
+    {{/each}}
+</ul>
+<ul class="news-list-r"></ul>
+

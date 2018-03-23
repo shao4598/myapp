@@ -1,0 +1,35 @@
+
+<ul>
+    {{!在 Handlebars里面，每个#就代表了一个局部块，每个块都有自身的作用域范围。注意，即使是#if、#each也是有作用域的，不要跟js中的作用范围混为一谈。}}
+
+    {{!
+        res.render('clothes',{
+            sales:{name:'T恤',num:'5件',price:'共计560元'},
+            brand:[
+                     {name:'优衣库',packages:'共6件'},
+                     {name:'海澜之家',packages:'共1件'}
+                  ],
+            specialsUrl:'http://www.heilanhome.com',
+            trade:['T恤','鞋鞋','袜子'],
+            test:['111','222']
+        });
+
+    }}
+
+    {{#each brand}} {{!遍历brand}}
+        <li>
+            {{name}} : {{packages}}
+            {{#if ../trade}}
+                ({{../../sales.price}})
+            {{/if}}
+            {{#if ../test}}
+                <a href="{{../../specialsUrl}}" target="_blank">点我点我点我</a>
+            {{/if}}
+            {{#each ../trade}}
+                <a href="#">{{.}}</a>
+            {{/each}}
+        </li>
+    {{/each}}
+
+
+</ul>

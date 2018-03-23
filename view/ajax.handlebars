@@ -1,0 +1,18 @@
+
+<script type="text/javascript">
+    function loadXMLDoc(){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET","demo?age=8",true);
+        xmlhttp.send();
+    }
+</script>
+
+
+<div id="myDiv"><h2>这是一只鸟</h2></div>
+<button type="button" onclick="loadXMLDoc()">超级变变变</button>
+
