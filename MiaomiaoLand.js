@@ -161,7 +161,7 @@ app.get('/demo',function (req,res) {
         },
         {
             name:'xiongji',
-            age:'8',
+            age:'3',
             sex:'boy'
         }
     ];
