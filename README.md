@@ -1,2 +1,3 @@
 # myapp
-Learn NodeJS
+Learn Express
+Version 1.0
